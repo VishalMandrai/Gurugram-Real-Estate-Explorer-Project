@@ -167,7 +167,7 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
 
 ### **`Deployment`**
 
-* The complete model pipeline — including preprocessing, custom transformers, and the trained **XGBoost model** — was serialized and saved as a **`xgboost_model_pipeline.pkl`** file for use in the **Streamlit deployment app**.
+* The complete model pipeline — including preprocessing, custom transformers, and the trained **XGBoost model** — was serialized and saved as a **`XGBoost_model_pipeline.pkl`** file for use in the **Streamlit deployment app**.
 
 
 <br>
@@ -224,15 +224,30 @@ The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based we
 
 ```
 Gurugram-Real-Estate-Explorer/
-├── data/                      # Raw and processed datasets (do not store sensitive data here)
-├── notebooks/                 # Jupyter notebooks: EDA, feature engineering, modeling
-├── src/                       # Reusable modules (data cleaning, features, modeling utils)
-├── models/                    # Saved model artifacts and preprocessing pipelines (.pkl/.joblib)
-├── app/                       # Streamlit app and supporting scripts
-├── reports/                   # Plots, figures and summary tables
-├── requirements.txt           # Python dependencies
-├── README.md                  # This file
-└── LICENSE
+├── 01. Data Gathering/                      # Contains scripts and modules for structured data gathering
+    └── 01. Data Gathering.ipynb                 # Contains all scripts
+    └── file_1(Links).csv                        # Contains Links to property listings
+├── 02. 02. Data Cleaning/                   
+    └── 02. Data Cleaning.ipynb                  # Contains all code scripts for cleaning and pre-processing the data
+├── 03. Feature Engineering/                 # Feature Engineering notebook and all Gurugram Geo data extracted from OpenStreetMap
+    └── All_Amenities_with_counts.txt
+    └── sector_geo_centroid_data.csv
+    └── sectors_geo_boundary_data.csv
+├── 04. Exploratory Data Analysis (EDA)/     # EDA Notebooks and support files
+    └── 04. Exploratory Data Analysis - Part 1.ipynb
+    └── 04. Exploratory Data Analysis - Part 2.ipynb
+    └── Facing_Directions.jpeg
+├── 05. Final Preprocessing/                 # Notebooks for Final Preprocessing
+    └── Final Preprocessing.ipynb
+├── 06. Analytic Module & Deployment/        # Separate Repo for Streamlit App (Link in saved file)
+├── 07. Model Selection & Training/          # Model Selection & Recommendation Engine Notebooks with saved model pipeline and support files
+    └── Model Selection - Price Model.ipynb
+    └── Recommendation_Engine_Building.ipynb
+    └── XGBoost_model_pipeline.pkl
+    └── REC_1_Pricing_similarity_matrix.csv
+    └── REC_2_Facility_similarity_matrix.csv
+    └── REC_3_Locations_similarity_matrix.csv
+└── README.md                                # This file
 ```
 
 ---
