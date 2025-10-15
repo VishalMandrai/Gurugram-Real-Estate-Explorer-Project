@@ -201,6 +201,8 @@ The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based we
 
 **Live App Link:** [Gurugram Real Estate Explorer](https://gurugram-real-estate-explorer.streamlit.app/)
 
+<img width="1905" height="781" alt="image" src="https://github.com/user-attachments/assets/78fbea8e-248a-4711-bb45-75181ac34256" />
+
 
 ---
 <br>
