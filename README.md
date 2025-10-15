@@ -18,7 +18,7 @@ The project begins with a large-scale **data collection** phase:
 
 Following data collection, the dataset was cleaned and transformed using **Pandas** and **NumPy**, making it suitable for exploration, visualization, and modeling.
 
-### Data cleaning & feature extraction
+## **`II.` Data Cleaning & Feature Extraction**
 
 The raw scraped dataset contained numerous property-level attributes, including:
 
@@ -26,7 +26,7 @@ The raw scraped dataset contained numerous property-level attributes, including:
 
 Each of these features was cleaned and standardized using **Pandas** and **NumPy** — handling missing values, normalizing numeric units, unifying formats (e.g., price units, area values), and parsing textual attributes (like floor or furnishing status) into structured data.
 
-### Feature engineering
+## **`III.` Feature Engineering**
 
 From the cleaned data, several **derived features** were engineered to capture richer information:
 
@@ -38,33 +38,32 @@ From the cleaned data, several **derived features** were engineered to capture r
 
 These engineered features provided stronger contextual understanding and improved model interpretability and performance.
 
-### Exploratory Data Analysis (EDA)
+## **`IV.` Exploratory Data Analysis (EDA)**
 
-EDA forms the **core analytical section** of this project — a deep and comprehensive exploration of Gurugram’s residential property market.
+EDA forms the **core analytical section** of this project — a **deep and comprehensive exploration** of Gurugram’s residential property market.
 
 * Conducted using **Pandas** and **NumPy** for data manipulation and a range of visualization libraries — **Matplotlib**, **Seaborn**, **Plotly (Graph Objects & Express)**, and **Folium** for map-based insights.
 * The EDA explored **every aspect of the Gurugram Real Estate Market** — from **Flat Types** to **Sectors** to **Broader Localities**.
 * **Price distribution analyses** were carried out across **Flats, Sectors, Localities, and Property Specifications**.
 * Detailed examination of **property specifications** including:
-
   * **Furnishing Status** and its relationship with pricing trends.
   * **Floor and Building Height features** and their effect on price premiums.
   * **Parking Types** and distribution across different flat types (and correlation with price).
   * **Balconies, Bedrooms, Bathrooms counts** — distributions and influence on pricing.
 * Created **dedicated sections** for every major property aspect — **pricing, location, specifications, premium-ness, and affordability**.
-* Introduced a **4-tier sector segmentation** based on **Price Density**, classifying Gurugram sectors into affordability types.
-* Performed **statistical analyses**, including **Pearson’s Correlation Tests**, to quantify relationships between variables wherever relevant.
-* The EDA notebook is designed almost like a **research report**, filled with observations, insights, and actionable implications for **buyers, investors, builders, and policymakers**.
+* Introduced a **4-tier Sector Segmentation** based on **Sector Aggregated Price Density**, classifying Gurugram sectors into affordability types.
+* Performed **Statistical Analyses**, including **Pearson’s Correlation Tests**, to quantify relationships between variables wherever relevant.
+* The EDA notebook is designed almost like a **Research Report**, filled with observations, insights, and actionable implications for **buyers, investors, builders, and policymakers**. ***` PLEASE CONSIDER READING! `***
 
 The visual analysis employs **nearly every classical and modern visualization type**, including:
 
-* **Pie charts, Line plots, Bar charts, Count plots, Treemaps, Sunbursts, Box plots, Violin plots, Histograms, KDE plots**, and **Interactive map visualizations** using **Folium**.
+* Dynamic and Static Charts - **Pie charts, Line plots, Bar charts, Count plots, Treemaps, Sunbursts, Box plots, Violin plots, Histograms, KDE plots**, and **Interactive map visualizations** using **Folium**.
 
-This section transforms raw numbers into powerful visual narratives — explaining not only what the data says but also **what it means** for the Gurugram housing market.
+This section **transforms raw numbers into powerful visual narratives** — explaining not only what the data says but also **what it means** for the Gurugram housing market.
 
 ---
 
-### Final Preprocessing
+## **`V.` Final Preprocessing**
 
 After the exploratory phase, a **final preprocessing pipeline** was developed to refine the dataset for modeling. The main objective was to retain only those features that contribute meaningfully to the **Price Prediction Model** — ensuring high accuracy and reliability with minimal redundancy.
 
