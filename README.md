@@ -62,15 +62,124 @@ The visual analysis employs **nearly every classical and modern visualization ty
 
 This section transforms raw numbers into powerful visual narratives — explaining not only what the data says but also **what it means** for the Gurugram housing market.
 
-Key deliverables:
+---
 
-* A cleaned, analysis-ready dataset derived from scraped real-estate listings.
-* EDA notebooks highlighting supply, pricing density, floor-rise premium, and sector-level effects.
-* An interactive Streamlit app for exploring properties, maps and prediction results.
-* One or more trained regression models (with saved pipelines) to estimate price / price-per-sqft.
-* Documentation (this README) and reproducible instructions to run the project locally.
+### Final Preprocessing
+
+After the exploratory phase, a **final preprocessing pipeline** was developed to refine the dataset for modeling. The main objective was to retain only those features that contribute meaningfully to the **Price Prediction Model** — ensuring high accuracy and reliability with minimal redundancy.
+
+Key preprocessing steps included:
+
+* **Feature selection:** Removed all features that could lead to **data leakage** during model training and evaluation — such as *Price Density*, *EMI*, and *Brokerage*.
+* **Data type correction:** Converted categorical and numerical columns into consistent formats compatible with scikit-learn pipelines.
+* **Outlier removal:** Applied rule-based and quantile-based trimming of extreme values across price, area, and per-sqft metrics.
+* **Imputation:** Handled missing values using **pattern-based and insight-driven imputation**, inspired by findings from EDA. Instead of using constant or mean-based imputations, values were filled logically according to observed trends and correlations between property features (e.g., filling missing parking counts based on flat type or furnishing level).
+
+The outcome of this preprocessing step was a **high-quality dataset of over 7000 cleaned and complete property listings**, ready for feature encoding, scaling, and model selection.
 
 ---
+
+### Model Selection & Outcomes
+
+The **Model Selection** phase focused on developing a robust, generalizable, and efficient regression model for predicting property prices across Gurugram’s real estate market.
+
+#### Target transformation
+
+* The target variable, **Property Price**, exhibited strong **right skewness** due to a concentration of high-end luxury properties. To stabilize variance and improve model interpretability, a **log transformation** was applied.
+* Similarly, the **Built-up Area** feature was also log-transformed to better align with linear model assumptions and reduce the influence of outliers.
+
+#### Modeling pipeline
+
+* All modeling steps were handled through **scikit-learn Pipelines**, ensuring clean integration of preprocessing, transformation, and model training steps.
+* The pipeline included feature scaling, categorical encoding, and model fitting.
+* Initial sanity checks were done with simple models to validate pipeline functioning before advancing to full-scale model comparisons.
+
+#### Cross-validated model training
+
+* Performed multiple rounds of **cross-validation** using different model architectures and feature encoding strategies.
+* Explored three encoding setups:
+
+  1. **Label Encoding only**
+  2. **Label + One-Hot Encoding (OHE)**
+  3. **Label + OHE + Target Encoding** — applied especially for high-cardinality categorical features like **Sector/Locality**.
+
+#### Models evaluated
+
+A broad range of regression models were tested at default and tuned configurations:
+
+* **Linear Regression** (baseline)
+* **Support Vector Regression (SVR)**
+* **Bagging-based models:** Random Forest Regressor, Extra Trees Regressor
+* **Boosting-based models:** Gradient Boosting Regressor, XGBoost Regressor
+
+#### Custom feature engineering within pipeline
+
+To enrich model inputs without causing data leakage, a **custom transformation class** was created to inject **historical Sector/Locality-level Median Price Densities** into the training data. This transformer:
+
+* Computes and stores median price densities per sector/locality during training.
+* Imputes the pre-calculated density records to the test set — ensuring that no future information leaks into model evaluation.
+
+#### Model tuning and optimization
+
+* Based on multiple rounds of experimentation, four top-performing models were shortlisted:
+
+  * Random Forest Regressor
+  * Extra Trees Regressor
+  * Gradient Boosting Regressor
+  * XGBoost Regressor
+* Applied **Bayesian Optimization** for hyperparameter tuning on these contenders, with their best-performing feature encodings.
+
+#### Final model selection
+
+* **XGBoost Regressor** emerged as the final selected model — providing a balance of lightness, robustness, and reliability while maintaining strong generalization performance.
+* Compared to Random Forest (which was computationally heavier due to its large ensemble size), XGBoost offered better runtime efficiency with nearly equivalent accuracy.
+
+#### Final model results
+
+| Metric         | Value (approx.) | Notes                          |
+| -------------- | --------------- | ------------------------------ |
+| **MAE (Test)** | ₹30 Lacs        | On hold-out test set           |
+| **R² (Test)**  | 0.92            | Excellent generalization       |
+| **R² (Train)** | 0.95            | Slight but acceptable variance |
+
+#### Deployment
+
+The complete model pipeline — including preprocessing, custom transformers, and the trained **XGBoost model** — was serialized and saved as a `.pkl` file for use in the **Streamlit deployment app**.
+
+
+---
+
+
+## Society Recommendation Engine
+
+To complement the predictive model, we built a **Society Recommendation Engine**, following a **content-based filtering** approach. The recommender suggests similar housing societies based on three primary factors:
+
+1. **Property Pricing**
+2. **Nearby Location Proximity**
+3. **Society Amenities**
+
+Three individual recommendation modules were developed — each focusing on one of the above aspects. These modules were then **combined using weighted priorities** to create a unified and balanced recommendation system.
+
+The engine accepts a **Society Name** as input and returns the **Top 10 most similar societies**. All components were tested manually for accuracy, interpretability, and consistency before being integrated and deployed within the Streamlit App.
+
+
+---
+
+
+## Streamlit App – Gurugram Real Estate Explorer
+
+The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based web application** designed for **home buyers, investors, developers, and policymakers**. It delivers a data-driven understanding of Gurugram’s real estate landscape through multiple modules:
+
+* **Analytics & Insights Module:** Provides deep exploratory visualizations and insights into pricing, specifications, and sector-level patterns.
+* **Sector Explorer Tab:** Enables users to explore any sector of Gurugram via maps, graphs, and key property metrics (price, built-up area, etc.).
+* **Price Prediction Tool:** Predicts potential property price ranges based on input specifications using the trained ML model.
+* **Society Recommendation Engine:** Suggests similar societies across Gurugram, along with available property listings and external links.
+
+**Live App Link:** [Gurugram Real Estate Explorer](https://gurugram-real-estate-explorer.streamlit.app/)
+
+
+---
+
 
 ## Features
 
@@ -226,3 +335,50 @@ If you'd like to discuss the project, invite me to an interview, or review any p
 * [ ] Add screenshots/gif of the Streamlit app to this README (optional).
 
 *Happy coding — feel free to ask me to tailor this README for job applications or to produce a shorter one-page project summary.*
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Model Selection & Outcomes
+
+In the **Model Selection Step**, the dataset was split into input and target features. The target feature, *Property Price*, exhibited a strong right skew due to the presence of luxury properties, and thus a **log transformation** was applied — similar treatment was done for the *Built-up Area* feature.
+
+Model development was managed through **Pipelines**, enabling integrated feature scaling, transformation, and model training. Various encoding strategies were tested — **Label Encoding**, **Label + One-Hot Encoding**, and **Label + OHE + Target Encoding** (for high-cardinality features like Sector/Locality). Multiple regression algorithms were explored, including **Linear Regression, SVM, Random Forest, Extra Trees, Gradient Boosting, and XGBoost**.
+
+A key innovation was introducing a **custom transformation class** to compute and attach *Historical Sector/Locality Median Price Density* features — ensuring no data leakage by restricting the transformation to training data and reusing precomputed statistics for the test set.
+
+After several cross-validated rounds and performance comparisons, four top-performing models were shortlisted — Random Forest, Extra Trees, Gradient Boosting, and XGBoost. **Bayesian Optimization** was used to fine-tune hyperparameters for these models. Ultimately, **XGBoost Regressor** emerged as the most efficient and robust model, achieving:
+
+* **MAE:** ~ ₹30 Lakh (on hold-out test set)
+* **Test R²:** ~ 0.92
+* **Train R²:** ~ 0.95
+
+While Random Forest also performed well, XGBoost was selected for deployment due to its lighter structure and superior generalization. The final pipeline was serialized and saved as a Pickle file for deployment.
+
+---
+
+## Society Recommendation Engine
+
+A **Content-based Society Recommendation Engine** was developed to assist users in discovering similar societies within Gurugram. The engine evaluates similarity across three key dimensions:
+
+1. **Property Pricing Patterns**
+2. **Nearby Geographic Locations**
+3. **Societal Amenities**
+
+Three separate similarity engines were designed for each factor, later integrated into a unified system with priority-based weighting. The engine takes a society name as input and returns the **Top 10 most similar societies**. It was manually tested for reliability and successfully deployed in the Streamlit App.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
