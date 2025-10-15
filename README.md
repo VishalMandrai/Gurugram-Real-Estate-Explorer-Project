@@ -9,7 +9,7 @@
 This repository contains the code, data processing pipelines, exploratory analysis, visualization dashboards, machine learning models, and recommendation engine developed for the **Gurugram Real Estate Explorer** project. The goal is to create an **end-to-end reproducible workflow** that collects, cleans, analyzes, and models property listings to help stakeholders explore pricing patterns, locality effects, and predict property prices at a per-unit level.
 
 
-<br><br>
+<br>
 
 
 ## **`I.` Data Collection**
@@ -23,7 +23,7 @@ The project begins with a large-scale **data collection** phase:
 Following data collection, the dataset was cleaned and transformed using **Pandas** and **NumPy**, making it suitable for exploration, visualization, and modeling.
 
 
-<br><br>
+<br>
 
 
 ## **`II.` Data Cleaning & Feature Extraction**
@@ -35,7 +35,7 @@ The raw scraped dataset contained numerous property-level attributes, including:
 Each of these features was cleaned and standardized using **Pandas** and **NumPy** — handling missing values, normalizing numeric units, unifying formats (e.g., price units, area values), and parsing textual attributes (like floor or furnishing status) into structured data.
 
 
-<br><br>
+<br>
 
 
 ## **`III.` Feature Engineering**
@@ -51,7 +51,7 @@ From the cleaned data, several **derived features** were engineered to capture r
 These engineered features provided stronger contextual understanding and improved model interpretability and performance.
 
 
-<br><br>
+<br>
 
 
 ## **`IV.` Exploratory Data Analysis (EDA)**
@@ -78,7 +78,7 @@ The visual analysis employs **nearly every classical and modern visualization ty
 This section **transforms raw numbers into powerful visual narratives** — explaining not only what the data says but also **what it means** for the Gurugram housing market.
 
 
-<br><br>
+<br>
 
 
 ## **`V.` Final Preprocessing**
@@ -95,65 +95,62 @@ Key preprocessing steps included:
 The outcome of this preprocessing step was a **high-quality dataset of over 7000 cleaned and complete property listings**, ready for feature encoding, scaling, and model selection.
 
 
-<br><br>
+<br>
 
 
-## Model Selection & Outcomes
+## **`VI.` Model Selection & Outcomes**
 
-The **Model Selection** phase focused on developing a robust, generalizable, and efficient regression model for predicting property prices across Gurugram’s real estate market.
+The **Model Selection** phase **focused on developing** a robust, generalizable, and efficient **regression model for predicting property prices** across Gurugram’s real estate market.
 
-#### Target transformation
+#### **Target Transformation**
 
 * The target variable, **Property Price**, exhibited strong **right skewness** due to a concentration of high-end luxury properties. To stabilize variance and improve model interpretability, a **log transformation** was applied.
 * Similarly, the **Built-up Area** feature was also log-transformed to better align with linear model assumptions and reduce the influence of outliers.
 
-#### Modeling pipeline
+#### **Modeling Pipeline**
 
 * All modeling steps were handled through **scikit-learn Pipelines**, ensuring clean integration of preprocessing, transformation, and model training steps.
-* The pipeline included feature scaling, categorical encoding, and model fitting.
-* Initial sanity checks were done with simple models to validate pipeline functioning before advancing to full-scale model comparisons.
+* The pipeline included **feature scaling, categorical encoding, and model fitting**.
+* **Initial sanity checks were done with simple models** to validate pipeline functioning before advancing to full-scale model comparisons.
 
-#### Cross-validated model training
+#### **Cross-validated Model Training**
 
 * Performed multiple rounds of **cross-validation** using different model architectures and feature encoding strategies.
 * Explored three encoding setups:
-
   1. **Label Encoding only**
   2. **Label + One-Hot Encoding (OHE)**
   3. **Label + OHE + Target Encoding** — applied especially for high-cardinality categorical features like **Sector/Locality**.
 
-#### Models evaluated
+#### **Models Evaluated**
 
-A broad range of regression models were tested at default and tuned configurations:
-
+A broad range of regression models was tested at default and tuned configurations:
 * **Linear Regression** (baseline)
+* **Lasso and Ridge Regression**
 * **Support Vector Regression (SVR)**
 * **Bagging-based models:** Random Forest Regressor, Extra Trees Regressor
 * **Boosting-based models:** Gradient Boosting Regressor, XGBoost Regressor
 
-#### Custom feature engineering within pipeline
+#### **Custom Feature Engineering within Pipeline**
 
-To enrich model inputs without causing data leakage, a **custom transformation class** was created to inject **historical Sector/Locality-level Median Price Densities** into the training data. This transformer:
+**To enrich model inputs** without causing **Data Leakage**, a **Custom Transformation Class** was created to inject **historical Sector/Locality-level Median Price Densities** into the training data. **This transformer:**
+* **Computes and stores** median price densities per sector/locality **during training**.
+* **Imputes** the pre-calculated density records **to the test set** — ensuring that no future information leaks into model evaluation.
 
-* Computes and stores median price densities per sector/locality during training.
-* Imputes the pre-calculated density records to the test set — ensuring that no future information leaks into model evaluation.
-
-#### Model tuning and optimization
+#### **Model Tuning & Optimization**
 
 * Based on multiple rounds of experimentation, four top-performing models were shortlisted:
-
   * Random Forest Regressor
   * Extra Trees Regressor
   * Gradient Boosting Regressor
   * XGBoost Regressor
-* Applied **Bayesian Optimization** for hyperparameter tuning on these contenders, with their best-performing feature encodings.
+* Applied **Bayesian Optimization** using **`Optuna`** for **hyperparameter tuning** on these contenders, with their best-performing feature encodings.
 
-#### Final model selection
+#### **Final Model Selection**
 
-* **XGBoost Regressor** emerged as the final selected model — providing a balance of lightness, robustness, and reliability while maintaining strong generalization performance.
-* Compared to Random Forest (which was computationally heavier due to its large ensemble size), XGBoost offered better runtime efficiency with nearly equivalent accuracy.
+* **XGBoost Regressor** emerged as the **final selected model** — providing a balance of lightness, robustness, and reliability while maintaining strong generalization performance.
+* **Compared to Random Forest** (which was computationally heavier due to its large ensemble size), **XGBoost offered better runtime efficiency** with nearly equivalent accuracy.
 
-#### Final model results
+#### **Final Model Results**
 
 | Metric         | Value (approx.) | Notes                          |
 | -------------- | --------------- | ------------------------------ |
