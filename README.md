@@ -8,6 +8,10 @@
 
 This repository contains the code, data processing pipelines, exploratory analysis, visualization dashboards, machine learning models, and recommendation engine developed for the **Gurugram Real Estate Explorer** project. The goal is to create an **end-to-end reproducible workflow** that collects, cleans, analyzes, and models property listings to help stakeholders explore pricing patterns, locality effects, and predict property prices at a per-unit level.
 
+
+<br><br>
+
+
 ## **`I.` Data Collection**
 
 The project begins with a large-scale **data collection** phase:
@@ -18,6 +22,10 @@ The project begins with a large-scale **data collection** phase:
 
 Following data collection, the dataset was cleaned and transformed using **Pandas** and **NumPy**, making it suitable for exploration, visualization, and modeling.
 
+
+<br><br>
+
+
 ## **`II.` Data Cleaning & Feature Extraction**
 
 The raw scraped dataset contained numerous property-level attributes, including:
@@ -25,6 +33,10 @@ The raw scraped dataset contained numerous property-level attributes, including:
 * **Flat Type**, **Address**, **Price Density (₹/Sq.Ft)**, **Property Price**, **Built-up Area**, **Number of Bedrooms**, **Bathrooms**, **Balconies**, **Parking availability**, **Furnishing Status**, **Floor details**, **EMI estimate**, **Brokerage Cost**, **Society/Project name**, **Societal Amenities**, **Seller/Developer name**, and **Property Description**.
 
 Each of these features was cleaned and standardized using **Pandas** and **NumPy** — handling missing values, normalizing numeric units, unifying formats (e.g., price units, area values), and parsing textual attributes (like floor or furnishing status) into structured data.
+
+
+<br><br>
+
 
 ## **`III.` Feature Engineering**
 
@@ -37,6 +49,10 @@ From the cleaned data, several **derived features** were engineered to capture r
 * Additional computed variables like **Price per Sq.Ft**, **EMI**, and **Amenity Counts/Scores**.
 
 These engineered features provided stronger contextual understanding and improved model interpretability and performance.
+
+
+<br><br>
+
 
 ## **`IV.` Exploratory Data Analysis (EDA)**
 
@@ -61,7 +77,9 @@ The visual analysis employs **nearly every classical and modern visualization ty
 
 This section **transforms raw numbers into powerful visual narratives** — explaining not only what the data says but also **what it means** for the Gurugram housing market.
 
----
+
+<br><br>
+
 
 ## **`V.` Final Preprocessing**
 
@@ -76,9 +94,11 @@ Key preprocessing steps included:
 
 The outcome of this preprocessing step was a **high-quality dataset of over 7000 cleaned and complete property listings**, ready for feature encoding, scaling, and model selection.
 
----
 
-### Model Selection & Outcomes
+<br><br>
+
+
+## Model Selection & Outcomes
 
 The **Model Selection** phase focused on developing a robust, generalizable, and efficient regression model for predicting property prices across Gurugram’s real estate market.
 
