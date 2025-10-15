@@ -205,7 +205,7 @@ The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based we
 ---
 
 
-## Features
+## **KEY FEATURES**
 * Web scraping pipeline using **Selenium** and **Beautiful Soup**.
 * **Data cleaning** and **robust preprocessing pipeline** (handles missing values, inconsistent formats, currencies, and units).
 * **Geospatial visualizations** (dynamic plots using OpenStreetMap and folium of price density and amenities).
