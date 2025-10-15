@@ -305,7 +305,7 @@ If you'd like to discuss the project, invite me to an interview, or review any p
 **Vishal Mandrai**
 * GitHub: `https://github.com/VishalMandrai`
 * Email: `vishalm.nitt@gmail.com` [📧](mailto:vishalm.nitt@gmail.com)
-* LinkedIn: [![LinkedIn](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg)](https://www.linkedin.com/in/vishal-mandrai999/)
+* LinkedIn: [LinkedIn](https://www.linkedin.com/in/vishal-mandrai999/)
  
 
 ---
