@@ -103,20 +103,20 @@ The outcome of this preprocessing step was a **high-quality dataset of over 7000
 The **Model Selection** phase **focused on developing** a robust, generalizable, and efficient **regression model for predicting property prices** across Gurugram’s real estate market.
 
 
-#### **Target Transformation**
+### **`Target Transformation`**
 
 * The target variable, **Property Price**, exhibited strong **right skewness** due to a concentration of high-end luxury properties. To stabilize variance and improve model interpretability, a **log transformation** was applied.
 * Similarly, the **Built-up Area** feature was also log-transformed to better align with linear model assumptions and reduce the influence of outliers.
 
 
-#### **Modeling Pipeline**
+### **`Modeling Pipeline`**
 
 * All modeling steps were handled through **scikit-learn Pipelines**, ensuring clean integration of preprocessing, transformation, and model training steps.
 * The pipeline included **feature scaling, categorical encoding, and model fitting**.
 * **Initial sanity checks were done with simple models** to validate pipeline functioning before advancing to full-scale model comparisons.
 
 
-#### **Cross-validated Model Training**
+### **`Cross-validated Model Training`**
 
 * Performed multiple rounds of **cross-validation** using different model architectures and feature encoding strategies.
 * Explored three encoding setups:
@@ -125,7 +125,7 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
   3. **Label + OHE + Target Encoding** — applied especially for high-cardinality categorical features like **Sector/Locality**.
 
 
-#### **Models Evaluated**
+### **`Models Evaluated`**
 
 - A broad range of regression models was tested at default and tuned configurations:
  * **Linear Regression** (baseline)
@@ -135,14 +135,14 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
  * **Boosting-based models:** Gradient Boosting Regressor, XGBoost Regressor
 
 
-#### **Custom Feature Engineering within Pipeline**
+### **`Custom Feature Engineering within Pipeline`**
 
 * **To enrich model inputs** without causing **Data Leakage**, a **Custom Transformation Class** was created to inject **historical Sector/Locality-level Median Price Densities** into the training data. **This transformer:**
  * **Computes and stores** median price densities per sector/locality **during training**.
  * **Imputes** the pre-calculated density records **to the test set** — ensuring that no future information leaks into model evaluation.
 
 
-#### **`Model Tuning & Optimization`**
+### **`Model Tuning & Optimization`**
 
 * Based on multiple rounds of experimentation, four top-performing models were shortlisted:
   * Random Forest Regressor
@@ -152,12 +152,12 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
 * Applied **Bayesian Optimization** using **`Optuna`** for **hyperparameter tuning** on these contenders, with their best-performing feature encodings.
 
 
-#### **`Final Model Selection`**
+### **`Final Model Selection`**
 
 * **XGBoost Regressor** emerged as the **final selected model** — providing a balance of lightness, robustness, and reliability while maintaining strong generalization performance.
 * **Compared to Random Forest** (which was computationally heavier due to its large ensemble size), **XGBoost offered better runtime efficiency** with nearly equivalent accuracy.
 
-#### **`Final Model Results`**
+### **`Final Model Results`**
 | Metric         | Value (approx.) | Notes                          |
 | -------------- | --------------- | ------------------------------ |
 | **MAE (Test)** | ~ ₹30 Lacs      | On hold-out test set           |
@@ -165,7 +165,7 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
 | **R² (Train)** | 0.95            | Slight but acceptable variance |
 
 
-#### **`Deployment`**
+### **`Deployment`**
 
 * The complete model pipeline — including preprocessing, custom transformers, and the trained **XGBoost model** — was serialized and saved as a **`xgboost_model_pipeline.pkl`** file for use in the **Streamlit deployment app**.
 
