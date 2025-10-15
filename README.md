@@ -206,18 +206,20 @@ The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based we
 
 
 ## Features
+* Web scraping pipeline using **Selenium** and **Beautiful Soup**.
+* **Data cleaning** and **robust preprocessing pipeline** (handles missing values, inconsistent formats, currencies, and units).
+* **Geospatial visualizations** (dynamic plots using OpenStreetMap and folium of price density and amenities).
+* **Sector- and locality-level aggregation and insights** (median price, amenity scores, parking, furnishing effects).
+* **Feature engineering specific to real estate:** floor-rise premium, building age, area-normalized price density, amenity counts/scores, EMI estimate, etc.
+* **Model training & evaluation** notebooks using scikit-learn / XGBoost with cross-validation and hyperparameter tuning.
+* **Society Recommendation Engine** using **content-based filtering** to **recommend similar societies** based on Pricing, Location, and Amenities.
+* A **Streamlit-based interactive application** for recruiters/employers to view analyses and test the predictor.
 
-* Automated web scraping pipeline using **Selenium** and **Beautiful Soup**.
-* Data cleaning and robust preprocessing pipeline (handles missing values, inconsistent formats, currencies and units).
-* Geospatial visualizations (plots on OpenStreetMap, choropleth/heatmaps of price density and amenities).
-* Sector- and locality-level aggregation and insights (median price, amenity scores, parking, furnishing effects).
-* Feature engineering specific to real-estate: floor-rise premium, building age, area-normalized price density, amenity counts/scores, EMI estimate, etc.
-* Model training & evaluation notebooks using scikit-learn / XGBoost with cross-validation and hyperparameter tuning.
-* A Streamlit-based interactive explorer for recruiters/employers to view analyses and test the predictor.
 
 ---
 
-## Repository structure
+
+## **Repository Structure**
 
 ```
 Gurugram-Real-Estate-Explorer/
