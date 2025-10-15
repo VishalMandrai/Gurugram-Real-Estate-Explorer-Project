@@ -253,175 +253,56 @@ Gurugram-Real-Estate-Explorer/
 ---
 <br>
 
-## Quick demo
+## **Data** 
 
-1. Browse the `notebooks/` folder for exploratory analysis and model training steps.
-2. Run the Streamlit app in `app/` to interactively explore the maps and try price predictions.
+* The dataset was collected from publicly available listing sources and subsequently anonymized and cleaned before analysis. See `02. Data Cleaning/02.  Data Cleaning.ipynb` for details.
+* **Important:** This repository intentionally omits or masks any personally identifiable information and any content that would violate the source websites' terms of service. If you need to reproduce the data collection step, consult the `02. Data Gathering/02. Data Gathering.ipynb` for the scraping notes and obey the source website's robots.txt and terms.
+
+---
+<br>
+
+
+## **How Recruiters / Employers can Evaluate the Project**
+
+1. Open the notebooks saved in separate numbered folders with intuitive names in the following order:
+   * `01. Data Gathering/01. Data Gathering.ipynb` — web scraping and dataset creation
+   * `02. Data Cleaning/02. Data Cleaning.ipynb` — data cleaning & preprocessing
+   * `03. Feature Engineering/03. Feature Engineering.ipynb` — feature derivations and unpacking
+   * `04. Exploratory Data Analysis (EDA)/04. Exploratory Data Analysis (EDA).ipynb` — EDA and insights
+   * `07. Model Selection and Training/07. Model Selection and Training.ipynb` — models, validation, and evaluation
+2. Go to the Separate repo for the Streamlit app (link attached in `06. Analytic Module & Deployment` folder) and try analytic modules or upload a hypothetical property specs to see predicted prices and try the society recommendation engine.
+3. Review code quality, modularization, and unit-testable functions for Streamlit app by visiting its dedicated repo (link attached in `06. Analytic Module & Deployment` folder).
+4. Review `04. Exploratory Data Analysis (EDA)/04. Exploratory Data Analysis (EDA).ipynb` and Analytic and Insights modules of the Streamlit app for the visual narrative and key takeaways.
 
 ---
 
-## Getting started (run locally)
-
-> These commands assume you have Python 3.9+ installed.
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/<your-username>/Gurugram-Real-Estate-Explorer.git
-cd Gurugram-Real-Estate-Explorer
-```
-
-2. Create a virtual environment and install dependencies
-
-```bash
-python -m venv venv
-# Unix / macOS
-source venv/bin/activate
-# Windows
-venv\Scripts\activate
-
-pip install -r requirements.txt
-```
-
-3. (Optional) If you have the raw data files, place them in `data/raw/` and run the cleaning notebook or `src` scripts to regenerate processed data.
-
-4. Run the Streamlit app (from project root)
-
-```bash
-streamlit run app/app.py
-```
-
-5. Open `notebooks/` in JupyterLab / Jupyter Notebook to reproduce the EDA and model training steps.
-
----
-
-## Data
-
-* The dataset was collected from publicly available listing sources and subsequently anonymised and cleaned before analysis. See `notebooks/00-data-cleaning.ipynb` for details.
-* **Important:** This repository intentionally omits or masks any personally identifiable information and any content that would violate the source websites' terms of service. If you need to reproduce the data collection step, consult the `notebooks/` for the scraping notes and obey the source website's robots.txt and terms.
-
----
-
-## Modeling summary
-
-* Models used: baseline linear regression, tree-based regressors (RandomForest / XGBoost), and stacked pipelines.
-* Cross-validation strategy and metrics: K-Fold CV with MAE, RMSE and R² reported. See `notebooks/03-modeling.ipynb` for full results.
-* The final model pipeline (preprocessor + model) is saved under `models/` as `best_pipeline.joblib`.
-
-Sample model performance (example):
-
-* MAE: ~₹X,XXX (on hold-out test set)
-* RMSE: ~₹X,XXX
-* R²: ~0.XX
-
-(Replace the above with your final model metrics before publishing.)
-
----
-
-## Notes on feature engineering & leakage
-
-* Carefully engineered features such as locality median price density and amenities counts contributed strongly to model performance.
-* **Caution:** Some aggregated locality-level features can introduce leakage if computed using target data that overlaps the train/test split. Notebooks show the correct way to compute aggregation features within cross-validation to avoid leakage.
-
----
-
-## How recruiters / employers can evaluate the project
-
-1. Open the notebooks in `notebooks/` in the following order:
-
-   * `00-data-collection.ipynb` — web scraping and dataset creation
-   * `01-data-cleaning.ipynb` — data cleaning & preprocessing
-   * `02-exploratory-analysis.ipynb` — EDA and insights
-   * `03-feature-engineering.ipynb` — feature derivations and justifications
-   * `04-modeling.ipynb` — models, validation and evaluation
-2. Run the Streamlit app in `app/` and try sample localities or upload a hypothetical property to see predicted prices.
-3. Inspect `src/` to review code quality, modularization, and unit-testable functions.
-4. Review `reports/` for the visual narrative and key takeaways.
-
----
-
-## Improvements & future work
+## **Improvements & Future Work**
 
 * Expand dataset (more listings, additional sectors and micro-localities) and re-train models.
 * Incorporate external data sources: proximity to transit, planned infrastructure, zoning, and crime/safety indices.
 * Build an automated ML pipeline (CI) to retrain models when new data arrives.
 * Add unit tests and CI checks for data contracts.
 
----
-
-## Licensing
-
-This project is released under the MIT License. See `LICENSE` for details.
 
 ---
+<br>
 
-## Acknowledgements / References
 
-* Built using open-source Python libraries: Pandas, NumPy, scikit-learn, XGBoost, GeoPandas, Folium/Leaflet, Streamlit, Matplotlib/Plotly.
-* The exploratory analyses and modelling approaches draw on common real-estate analytics practices.
+## **Acknowledgments / References**
+
+* **Built using open-source Python libraries**: Pandas, NumPy, Selenium, scikit-learn, XGBoost, GeoPandas, Folium/Leaflet, Streamlit, Matplotlib/Plotly.
+* The exploratory analyses and modeling approaches draw on common real-estate analytics practices.
+
 
 ---
+<br>
 
-## Contact
+
+## **Contact Me**
 
 If you'd like to discuss the project, invite me to an interview, or review any part of the code, contact:
 
-**Vishal Mandrai** — GitHub: `https://github.com/<your-username>` — Email: `your.email@example.com`
+**Vishal Mandrai** — GitHub: `https://github.com/VishalMandrai` — Email: `vishalm.nitt@gmail.com` — LinkedIn: ''
 
 ---
-
-### Quick checklist before publishing
-
-* [ ] Replace placeholder metrics with final numbers from `03-modeling.ipynb`.
-* [ ] Ensure `requirements.txt` is up-to-date.
-* [ ] Remove any raw files with PII from `data/` and add them to `.gitignore`.
-* [ ] Add screenshots/gif of the Streamlit app to this README (optional).
-
-*Happy coding — feel free to ask me to tailor this README for job applications or to produce a shorter one-page project summary.*
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------
-
-## Model Selection & Outcomes
-
-In the **Model Selection Step**, the dataset was split into input and target features. The target feature, *Property Price*, exhibited a strong right skew due to the presence of luxury properties, and thus a **log transformation** was applied — similar treatment was done for the *Built-up Area* feature.
-
-Model development was managed through **Pipelines**, enabling integrated feature scaling, transformation, and model training. Various encoding strategies were tested — **Label Encoding**, **Label + One-Hot Encoding**, and **Label + OHE + Target Encoding** (for high-cardinality features like Sector/Locality). Multiple regression algorithms were explored, including **Linear Regression, SVM, Random Forest, Extra Trees, Gradient Boosting, and XGBoost**.
-
-A key innovation was introducing a **custom transformation class** to compute and attach *Historical Sector/Locality Median Price Density* features — ensuring no data leakage by restricting the transformation to training data and reusing precomputed statistics for the test set.
-
-After several cross-validated rounds and performance comparisons, four top-performing models were shortlisted — Random Forest, Extra Trees, Gradient Boosting, and XGBoost. **Bayesian Optimization** was used to fine-tune hyperparameters for these models. Ultimately, **XGBoost Regressor** emerged as the most efficient and robust model, achieving:
-
-* **MAE:** ~ ₹30 Lakh (on hold-out test set)
-* **Test R²:** ~ 0.92
-* **Train R²:** ~ 0.95
-
-While Random Forest also performed well, XGBoost was selected for deployment due to its lighter structure and superior generalization. The final pipeline was serialized and saved as a Pickle file for deployment.
-
 ---
-
-## Society Recommendation Engine
-
-A **Content-based Society Recommendation Engine** was developed to assist users in discovering similar societies within Gurugram. The engine evaluates similarity across three key dimensions:
-
-1. **Property Pricing Patterns**
-2. **Nearby Geographic Locations**
-3. **Societal Amenities**
-
-Three separate similarity engines were designed for each factor, later integrated into a unified system with priority-based weighting. The engine takes a society name as input and returns the **Top 10 most similar societies**. It was manually tested for reliability and successfully deployed in the Streamlit App.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
