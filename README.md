@@ -102,16 +102,19 @@ The outcome of this preprocessing step was a **high-quality dataset of over 7000
 
 The **Model Selection** phase **focused on developing** a robust, generalizable, and efficient **regression model for predicting property prices** across Gurugram’s real estate market.
 
+
 #### **Target Transformation**
 
 * The target variable, **Property Price**, exhibited strong **right skewness** due to a concentration of high-end luxury properties. To stabilize variance and improve model interpretability, a **log transformation** was applied.
 * Similarly, the **Built-up Area** feature was also log-transformed to better align with linear model assumptions and reduce the influence of outliers.
+
 
 #### **Modeling Pipeline**
 
 * All modeling steps were handled through **scikit-learn Pipelines**, ensuring clean integration of preprocessing, transformation, and model training steps.
 * The pipeline included **feature scaling, categorical encoding, and model fitting**.
 * **Initial sanity checks were done with simple models** to validate pipeline functioning before advancing to full-scale model comparisons.
+
 
 #### **Cross-validated Model Training**
 
@@ -121,20 +124,23 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
   2. **Label + One-Hot Encoding (OHE)**
   3. **Label + OHE + Target Encoding** — applied especially for high-cardinality categorical features like **Sector/Locality**.
 
+
 #### **Models Evaluated**
 
-A broad range of regression models was tested at default and tuned configurations:
-* **Linear Regression** (baseline)
-* **Lasso and Ridge Regression**
-* **Support Vector Regression (SVR)**
-* **Bagging-based models:** Random Forest Regressor, Extra Trees Regressor
-* **Boosting-based models:** Gradient Boosting Regressor, XGBoost Regressor
+- A broad range of regression models was tested at default and tuned configurations:
+ * **Linear Regression** (baseline)
+ * **Lasso and Ridge Regression**
+ * **Support Vector Regression (SVR)**
+ * **Bagging-based models:** Random Forest Regressor, Extra Trees Regressor
+ * **Boosting-based models:** Gradient Boosting Regressor, XGBoost Regressor
+
 
 #### **Custom Feature Engineering within Pipeline**
 
-**To enrich model inputs** without causing **Data Leakage**, a **Custom Transformation Class** was created to inject **historical Sector/Locality-level Median Price Densities** into the training data. **This transformer:**
-* **Computes and stores** median price densities per sector/locality **during training**.
-* **Imputes** the pre-calculated density records **to the test set** — ensuring that no future information leaks into model evaluation.
+* **To enrich model inputs** without causing **Data Leakage**, a **Custom Transformation Class** was created to inject **historical Sector/Locality-level Median Price Densities** into the training data. **This transformer:**
+ * **Computes and stores** median price densities per sector/locality **during training**.
+ * **Imputes** the pre-calculated density records **to the test set** — ensuring that no future information leaks into model evaluation.
+
 
 #### **Model Tuning & Optimization**
 
@@ -145,44 +151,46 @@ A broad range of regression models was tested at default and tuned configuration
   * XGBoost Regressor
 * Applied **Bayesian Optimization** using **`Optuna`** for **hyperparameter tuning** on these contenders, with their best-performing feature encodings.
 
+
 #### **Final Model Selection**
 
 * **XGBoost Regressor** emerged as the **final selected model** — providing a balance of lightness, robustness, and reliability while maintaining strong generalization performance.
 * **Compared to Random Forest** (which was computationally heavier due to its large ensemble size), **XGBoost offered better runtime efficiency** with nearly equivalent accuracy.
 
 #### **Final Model Results**
-
 | Metric         | Value (approx.) | Notes                          |
 | -------------- | --------------- | ------------------------------ |
-| **MAE (Test)** | ₹30 Lacs        | On hold-out test set           |
+| **MAE (Test)** | ~ ₹30 Lacs      | On hold-out test set           |
 | **R² (Test)**  | 0.92            | Excellent generalization       |
 | **R² (Train)** | 0.95            | Slight but acceptable variance |
 
-#### Deployment
 
-The complete model pipeline — including preprocessing, custom transformers, and the trained **XGBoost model** — was serialized and saved as a `.pkl` file for use in the **Streamlit deployment app**.
+#### **Deployment**
 
-
----
+* The complete model pipeline — including preprocessing, custom transformers, and the trained **XGBoost model** — was serialized and saved as a **`xgboost_model_pipeline.pkl`** file for use in the **Streamlit deployment app**.
 
 
-## Society Recommendation Engine
+<br>
 
-To complement the predictive model, we built a **Society Recommendation Engine**, following a **content-based filtering** approach. The recommender suggests similar housing societies based on three primary factors:
+
+## **`VII.` Society Recommendation Engine**
+
+**To complement the predictive model**, we developed a **Society Recommendation Engine**, based on **Content-based Filtering** Approach. The recommender suggests similar housing societies based on three primary factors:
 
 1. **Property Pricing**
 2. **Nearby Location Proximity**
 3. **Society Amenities**
 
-Three individual recommendation modules were developed — each focusing on one of the above aspects. These modules were then **combined using weighted priorities** to create a unified and balanced recommendation system.
+**Three individual recommendation modules were developed** — each focusing on one of the above aspects. These modules were then **combined using weighted priorities** to create a **unified and balanced recommendation system**.
 
-The engine accepts a **Society Name** as input and returns the **Top 10 most similar societies**. All components were tested manually for accuracy, interpretability, and consistency before being integrated and deployed within the Streamlit App.
-
-
----
+The **engine accepts** a **Society Name** as input and **returns** the **Top 10 most similar societies**. All components were tested manually for accuracy, interpretability, and consistency before being integrated and deployed within the Streamlit App. 
 
 
-## Streamlit App – Gurugram Real Estate Explorer
+<br>
+
+
+## **`VIII.` Streamlit App – Gurugram Real Estate Explorer [🔗](https://gurugram-real-estate-explorer.streamlit.app/)
+
 
 The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based web application** designed for **home buyers, investors, developers, and policymakers**. It delivers a data-driven understanding of Gurugram’s real estate landscape through multiple modules:
 
