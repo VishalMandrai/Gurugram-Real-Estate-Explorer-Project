@@ -142,7 +142,7 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
  * **Imputes** the pre-calculated density records **to the test set** — ensuring that no future information leaks into model evaluation.
 
 
-#### **Model Tuning & Optimization**
+#### **`Model Tuning & Optimization`**
 
 * Based on multiple rounds of experimentation, four top-performing models were shortlisted:
   * Random Forest Regressor
@@ -152,12 +152,12 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
 * Applied **Bayesian Optimization** using **`Optuna`** for **hyperparameter tuning** on these contenders, with their best-performing feature encodings.
 
 
-#### **Final Model Selection**
+#### **`Final Model Selection`**
 
 * **XGBoost Regressor** emerged as the **final selected model** — providing a balance of lightness, robustness, and reliability while maintaining strong generalization performance.
 * **Compared to Random Forest** (which was computationally heavier due to its large ensemble size), **XGBoost offered better runtime efficiency** with nearly equivalent accuracy.
 
-#### **Final Model Results**
+#### **`Final Model Results`**
 | Metric         | Value (approx.) | Notes                          |
 | -------------- | --------------- | ------------------------------ |
 | **MAE (Test)** | ~ ₹30 Lacs      | On hold-out test set           |
@@ -165,7 +165,7 @@ The **Model Selection** phase **focused on developing** a robust, generalizable,
 | **R² (Train)** | 0.95            | Slight but acceptable variance |
 
 
-#### **Deployment**
+#### **`Deployment`**
 
 * The complete model pipeline — including preprocessing, custom transformers, and the trained **XGBoost model** — was serialized and saved as a **`xgboost_model_pipeline.pkl`** file for use in the **Streamlit deployment app**.
 
@@ -189,7 +189,7 @@ The **engine accepts** a **Society Name** as input and **returns** the **Top 10 
 <br>
 
 
-## **`VIII.` Streamlit App – Gurugram Real Estate Explorer [🔗](https://gurugram-real-estate-explorer.streamlit.app/)
+## **`VIII.` Streamlit App – Gurugram Real Estate Explorer** [🔗](https://gurugram-real-estate-explorer.streamlit.app/)
 
 
 The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based web application** designed for **home buyers, investors, developers, and policymakers**. It delivers a data-driven understanding of Gurugram’s real estate landscape through multiple modules:
