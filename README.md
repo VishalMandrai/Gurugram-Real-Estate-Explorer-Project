@@ -203,7 +203,7 @@ The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based we
 
 
 ---
-
+<br>
 
 ## **KEY FEATURES**
 * Web scraping pipeline using **Selenium** and **Beautiful Soup**.
@@ -217,6 +217,7 @@ The **Gurugram Real Estate Explorer App** is an interactive **Streamlit-based we
 
 
 ---
+<br>
 
 
 ## **Repository Structure**
@@ -235,6 +236,7 @@ Gurugram-Real-Estate-Explorer/
 ```
 
 ---
+<br>
 
 ## Quick demo
 
