@@ -8,7 +8,7 @@
 
 This repository contains the code, data processing pipelines, exploratory analysis, visualization dashboards, and machine learning models developed for the **Gurugram Real Estate Explorer** project. The goal is to create an end-to-end reproducible workflow that collects, cleans, analyzes and models property listings to help stakeholders explore pricing patterns, locality effects, and to predict property prices at a per-unit level.
 
-### Data collection
+## Data collection
 
 The project begins with a large-scale **data collection** phase:
 
