@@ -1,3 +1,5 @@
+<img width="1917" height="178" alt="image" src="https://github.com/user-attachments/assets/94f9d469-d72e-4ee7-ac9b-8251fc5abdb8" />
+
 # Gurugram Real Estate Explorer
 
 > Interactive data exploration and price-prediction toolkit for residential properties in Gurugram (Gurgaon), India — built with Python (Pandas, NumPy), geospatial tools, and ML models.
