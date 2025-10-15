@@ -1,14 +1,12 @@
 <img width="1917" height="178" alt="image" src="https://github.com/user-attachments/assets/94f9d469-d72e-4ee7-ac9b-8251fc5abdb8" />
 
-# Gurugram Real Estate Explorer
-
-> Interactive data exploration and price-prediction toolkit for residential properties in Gurugram (Gurgaon), India — built with Python (Pandas, NumPy), geospatial tools, and ML models.
+> Interactive data exploration and price-prediction toolkit for residential properties in Gurugram (Gurgaon), India — built with Python (Pandas, NumPy, Visualization libraries), geospatial tools, and ML models.
 
 ---
 
-## Project overview
+## PROJECT OVERVIEW
 
-This repository contains the code, data processing pipelines, exploratory analysis, visualization dashboards, and machine learning models developed for the **Gurugram Real Estate Explorer** project. The goal is to create an end-to-end reproducible workflow that collects, cleans, analyzes and models property listings to help stakeholders explore pricing patterns, locality effects, and to predict property prices at a per-unit level.
+This repository contains the code, data processing pipelines, exploratory analysis, visualization dashboards, machine learning models, and recommendation engine developed for the **Gurugram Real Estate Explorer** project. The goal is to create an **end-to-end reproducible workflow** that collects, cleans, analyzes, and models property listings to help stakeholders explore pricing patterns, locality effects, and predict property prices at a per-unit level.
 
 ## Data collection
 
